@@ -24,7 +24,7 @@ export function FinancialEvolutionBarChart({
   financialEvolution,
 }: FinancialEvolutionBarChartProps) {
   const data = useMemo<ChartData[]>(() => {
-    if (financialEvolution?.length) {
+    if (Array.isArray(financialEvolution) && financialEvolution.length > 0) {
       const chartData: ChartData[] = financialEvolution.map((item) => {
         const [year, month] = item._id;
 

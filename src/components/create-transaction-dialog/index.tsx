@@ -75,12 +75,17 @@ export function CreateTransactionDialog() {
               <label>Categoria</label>
               <select {...register('categoryId')}>
                 <option value="null">Selecione uma categoria...</option>
-                {categories?.length &&
+                {Array.isArray(categories) && categories.length > 0 ? (
                   categories.map((item) => (
                     <option key={item._id} value={item._id}>
                       {item.title}
                     </option>
-                  ))}
+                  ))
+                ) : (
+                  <option value="" disabled>
+                    Nenhuma categoria disponível
+                  </option>
+                )}
               </select>
               {errors.categoryId && (
                 <ErrorMessage>{errors.categoryId.message}</ErrorMessage>

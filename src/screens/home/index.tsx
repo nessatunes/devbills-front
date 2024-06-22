@@ -249,8 +249,9 @@ export function Home() {
             </SearchTransaction>
           </header>
           <TransactionGroup>
-            {transactions?.length &&
-              transactions?.map((item, index) => (
+            {Array.isArray(transactions) &&
+              transactions.length > 0 &&
+              transactions.map((item, index) => (
                 <Transaction
                   key={item._id}
                   id={index + 1}
