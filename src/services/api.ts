@@ -30,7 +30,6 @@ export class APIService {
         },
       },
     );
-
     return data;
   }
 
@@ -41,7 +40,6 @@ export class APIService {
       '/transactions',
       createTransactionData,
     );
-
     return data;
   }
 
@@ -62,7 +60,6 @@ export class APIService {
         },
       },
     );
-
     return data;
   }
 
@@ -73,13 +70,12 @@ export class APIService {
       '/categories',
       createCategoryData,
     );
-
+  
     return data;
   }
 
   static async getCategories(): Promise<Category[]> {
     const { data } = await APIService.client.get<Category[]>('/categories');
-
     return data;
   }
 
@@ -94,7 +90,6 @@ export class APIService {
         },
       },
     );
-
     return data;
   }
 }
