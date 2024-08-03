@@ -148,9 +148,11 @@ export function CreateTransactionDialog() {
 
           <footer>
             <Button onClick={handleClose} variant="outline" type="button">
-              Calcelar
+              Cancelar
             </Button>
-            <Button type="submit">Cadastrar</Button>
+            <Button onClick={onSubmit} variant="outline" type="button">
+              Cadastrar
+            </Button>
           </footer>
         </form>
       </Container>

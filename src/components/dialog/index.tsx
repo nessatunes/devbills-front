@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
-import { Content, Overlay, Portal, Root, Trigger } from './styles';
+
+import { Content, Overlay, Portal, Root, Trigger, Title } from './styles';
 
 type DialogProps = {
   children: ReactNode;
@@ -14,6 +15,7 @@ export function Dialog({ children, trigger, open, onOpenChange }: DialogProps) {
       <Trigger>{trigger}</Trigger>
       <Portal>
         <Overlay />
+        <Title />
         <Content>{children}</Content>
       </Portal>
     </Root>

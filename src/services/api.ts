@@ -21,16 +21,21 @@ export class APIService {
     beginDate,
     endDate,
   }: DashboardFilters): Promise<Dashboard> {
-    const { data } = await APIService.client.get<Dashboard>(
-      '/transactions/dashboard',
-      {
-        params: {
-          beginDate,
-          endDate,
+    try {
+      const { data } = await APIService.client.get<Dashboard>(
+        '/transactions/dashboard',
+        {
+          params: {
+            beginDate,
+            endDate,
+          },
         },
-      },
-    );
-    return data;
+      );
+      return data;
+    } catch (error) {
+      // console.error('Error fetching dashboard:', error);
+      throw error; // ou lidar com o erro de outra forma
+    }
   }
 
   static async createTransaction(
@@ -40,6 +45,7 @@ export class APIService {
       '/transactions',
       createTransactionData,
     );
+
     return data;
   }
 
@@ -60,22 +66,29 @@ export class APIService {
         },
       },
     );
+
     return data;
   }
 
   static async createCategory(
     createCategoryData: CreateCategory,
   ): Promise<Category> {
-    const { data } = await APIService.client.post<Category>(
-      '/categories',
-      createCategoryData,
-    );
-  
-    return data;
+    try {
+      const sanitizedData = JSON.parse(JSON.stringify(createCategoryData));
+      const { data } = await APIService.client.post<Category>(
+        '/categories',
+        sanitizedData,
+      );
+      return data;
+    } catch (error) {
+      console.error('Error creating category:', error);
+      throw error;
+    }
   }
 
   static async getCategories(): Promise<Category[]> {
     const { data } = await APIService.client.get<Category[]>('/categories');
+
     return data;
   }
 
@@ -90,6 +103,7 @@ export class APIService {
         },
       },
     );
+
     return data;
   }
 }
